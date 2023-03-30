@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/dist/style.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/static/pics/Forum Logo.svg">
+    <title>Login</title>
+</head>
+<body>
+    <div class="top-logo flex justify-between mx-1">
+        <a href="/">
+            <img src="/static/pics/Forum Logo.svg" alt="Forum Logo" class="mt-1">
+        </a>
+    </div>
+    <div class="title flex items-center flex-col mt-8">
+        <h1 class="nexa-heavy text-white text-8xl">Login</h1>
+        <div class="text-white nexa-heavy text-2xl mt-2">Connect to your <span class="text-purp">account</span> !</div>
+    </div>
+    <form action="/login" method="post">
+    <div class="content grid grid-cols-3 grid-rows-1 mt-10">
+        <div class="text-white nexa-heavy text-base col-start-2 flex flex-col ml-5 mt-32">
+            <span>
+                Username or E-mail :
+            </span>
+            <input type="text" class="rounded-2xl bg-bgray mb-6 text-black pl-2" id="mail-name" name="mail-name" autofocus>
+            <span>
+                Password :
+            </span>
+            <input type="password" class="rounded-2xl bg-bgray text-black pl-2" id="password-login" name="password-login">
+            <div>
+                <p class="text-red-600 mt-5 text-center">{{.Error}}</p>
+            </div>
+            <div class="button mt-5 flex justify-around text-purp">
+                <button class="bg-bgray flex justify-center rounded-2xl w-24" type="submit" id="login" name="login">Login</button>
+            </form>
+            <form action="/register" method="post">
+                <a href="/register">
+                   <button class="bg-bgray flex justify-center rounded-2xl w-24" name="register">Register</button>
+                </a>
+            </form>
+        </div>
+            <div class="flex flex-row justify-around mt-4">
+                <div class="flex flex-col items-center text-xs">
+                    <a href="https://github.com/login/oauth/authorize?client_id=5fe1b31b4f9577bc2463&redirect_uri=http://localhost:8080/oauth/redirect">
+                        <img src="/static/pics/Vector.svg" alt="Github" class="h-6 w-6">
+                        <span class="nexa-heavy">Login with GitHub</span>
+                    </a>
+                </div>
+                <div class="flex flex-col items-center text-xs">
+                    <a href="/loginfacebook">
+                        <img src="/static/pics/Facebook.svg" alt="Facebook" class="h-6 w-6">
+                        <span class="nexa-heavy">Login with Facebook</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

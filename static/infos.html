@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/dist/style.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/static/pics/Forum Logo.svg">
+    <title>Information</title>
+</head>
+<body>
+    <div class="top-logo flex justify-between mx-1">
+        <a href="/">
+            <img src="/static/pics/Forum Logo.svg" alt="Forum Logo" class="mt-1">
+        </a>
+    </div>
+    <div class="title flex items-center flex-col mt-8">
+        <h1 class="nexa-heavy text-white text-8xl">{{.Topic.TopicTitle}}</h1>
+    </div>
+    <div class="mx-72 border-2 border-purp rounded-xl mt-4">
+        <div class="flex justify-between">
+            <div class="flex items-center px-2">
+                <form action="/liketopic" method="post">
+                <button class="">
+                    <img src="/static/pics/like.svg" alt="Like Logo" class="mt-1 w-6 h-6">
+                </button>
+            </form>
+                <span class="text-white nexa-light pl-2">{{.Topic.Likes}}</span>
+            </div>
+            <div class="flex items-center px-2">
+                <form action="/disliketopic" method="post">
+                <button class="">
+                    <img src="/static/pics/dislike.svg" alt="Dislike Logo" class="mt-1 w-6 h-6">
+                </button>
+            </form>
+                <span class="text-white nexa-light pl-2">{{.Topic.Dislikes}}</span>
+            </div>
+        </div>
+        <div class="px-2 mt-7">
+            <span class="text-white nexa-heavy  mt-7 text-sm">{{ .Topic.TopicMessage }}</span>
+        </div>
+        <div class="px-2 mt-7 mb-2">
+            <span class="text-white nexa-heavy mt-7 text-base border-b-2">Comments :</span>
+        </div>
+        {{ $User := .User.User_name}}
+        {{range .Topic.Comments}}
+        <div class="flex flex-row text-white ml-2">
+            <span class="nexa-light">{{.CreatorName}}</span>
+            <span class="nexa-heavy ml-2">{{.Title}}</span>
+            <form action="/like" method="get">
+                <div class="flex items-center px-2">
+                    <button class="" value="{{.Id}}" name="like">
+                        <img src="/static/pics/like.svg" alt="Like Logo" class="my-1 w-6 h-6">
+                    </button>
+                    <span class="text-white nexa-light pl-2">{{.Likes}}</span>
+                </div>
+            </form>
+            <form action="/dislike" method="get" class="flex flex-row">
+                <div class="flex items-center px-2">
+                    <button class="" value="{{.Id}}" name="dislike">
+                        <img src="/static/pics/dislike.svg" alt="Dislike Logo" class="my-1 w-6 h-6">
+                    </button>
+                    <span class="text-white nexa-light pl-2">{{.Dislikes}}</span>
+                </div>
+            </form>
+            {{if eq $User .CreatorName}}
+            <form action="/delcomment" method="get">
+                <div class="flex items-center px-2">
+                    <button class="" value="{{.Id}}" name="delete">
+                        <img src="/static/pics/delete.svg" alt="Delete Logo" class="my-1">
+                    </button>
+            </form>
+                <form action="/modifycomment" method="get">
+                    <button class="px-4" value="{{.Id}}" name="modify">
+                        <img src="/static/pics/modify.svg" alt="Delete Logo" class="my-1">
+                    </button>
+                </div>
+            </form>
+            {{end}}
+        </div>
+        {{end}}
+    </div>
+    <form action="/addcomment" method="get">
+    <div class="flex flex-col mx-72 mt-4">
+        <span class="text-white nexa-heavy mb-2">Add Comment :</span>
+        <textarea class="h-96 rounded-2xl bg-bgray pl-2 nexa-heavy" id="message" name="message" placeholder="Enter your comment here ..."></textarea>
+    </div>
+    <div class="flex justify-center">
+        <button class="nexa-heavy text-purp bg-bgray rounded-2xl w-24 mt-8" type="submit" name="Add Coment">Add</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+    font-family: "NexaHeavy";
+    src: url(/static/fonts/Nexa-Heavy.ttf);
+}
+@font-face {
+    font-family: "NexaLight";
+    src: url(/static/fonts/Nexa-ExtraLight.ttf);
+}
+
+body{
+    min-height: 100vh;
+    background-color: black;
+}
+.nexa-heavy{
+    font-family: 'NexaHeavy';
+}
+.nexa-light{
+    font-family: 'NexaLight';
+}
+
+.text-10xl {
+    font-size: 16rem;
+    line-height: 1;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+  }
